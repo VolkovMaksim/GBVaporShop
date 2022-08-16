@@ -8,7 +8,6 @@
 import Vapor
 
 struct SaleRequest: Content {
-    var id_user: Int
     var item: String
     var size: Int
     var quantity: Int
@@ -19,7 +18,6 @@ struct SaleRequest: Content {
 //add github
 /*
  {
-     "id_user": 123,
      "item": "Шаровары",
      "size": 56,
      "quantity": 2,
