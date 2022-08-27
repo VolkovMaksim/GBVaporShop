@@ -27,6 +27,18 @@ func routes(_ app: Application) throws {
     // при запросе на url "authorization" будет использован класс AuthorizationController - метод authorization
     app.post("authorization", use: controllerAuthorization.authorization)
     
+    
+    //MARK: КОРЗИНА - ДОБАВЛЕНИЕ/УДАЛЕНИЕ
+    let controllerCart = CartController()
+    // при запросе на url "tocart" будет использован класс ToCartController - метод addToCart
+    app.post("addtocart", use: controllerCart.addToCart)
+    // при запросе на url "tocart" будет использован класс ToCartController - метод addToCart
+    app.post("removefromcart", use: controllerCart.removeFromCart)
+    
+    //MARK: СПИСАНИЕ СРЕДСТВ - ОБНУЛЕНИЕ КОРЗИНЫ
+    // при запросе на url "paybasket" будет использован класс CartController - метод payBasket
+    app.post("paybasket", use: controllerCart.payBasket)
+    
     //MARK: ИЗМЕНЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ
     let controllerEditPersonalData = EditPersonalDataController()
     // при запросе на url "editpersonaldata" будет использован класс EditPersonalDataController - метод editPersonalData
