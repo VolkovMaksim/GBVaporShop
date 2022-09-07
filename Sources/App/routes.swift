@@ -4,12 +4,12 @@ import Vapor
 func routes(_ app: Application) throws {
     //MARK: СТАРТОВАЯ СТРАНИЦА
     app.get { req async in
-        "It works!"
+        "ДОБРО ПОЖАЛОВАТЬ НА ЧЕРКИЗОВСКИЙ РЫНОК!"
     }
 
     //MARK: HELLO
     app.get("hello") { req async -> String in
-        "Hello, world!"
+        "ПРИВЕТ, ЧЕРКИЗОН!"
     }
     
     //MARK: ПРОДАЖА
@@ -26,6 +26,19 @@ func routes(_ app: Application) throws {
     let controllerAuthorization = AuthorizationController()
     // при запросе на url "authorization" будет использован класс AuthorizationController - метод authorization
     app.post("authorization", use: controllerAuthorization.authorization)
+    
+    //MARK: ЗАПРОС СПИСКА ТОВАРОВ
+    app.get("stock") { req async -> StockResponse in
+        let response = StockResponse(
+            merchAndPriceInStockResponse: Stock.init().merchAndPriceInStock,
+            error_message: nil
+        )
+        return response
+    }
+    
+    //MARK: ЗАПРОС ОТДЕЛЬНОГО ТОВАРА ИЗ СПИСКА
+    let controllerSelectedMerch = MerchController()
+    app.post("merch", use: controllerSelectedMerch.merch)
     
     
     //MARK: КОРЗИНА - ДОБАВЛЕНИЕ/УДАЛЕНИЕ

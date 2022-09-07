@@ -8,7 +8,7 @@ public func configure(_ app: Application) throws {
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
     // меняем хост
-//    app.http.server.configuration.hostname = "192.168.100.20"
+//    app.http.server.configuration.hostname = "192.168.1.2"
     // меняем номер порта
     app.http.server.configuration.port = 8084
     

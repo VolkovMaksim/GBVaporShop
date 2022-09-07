@@ -18,7 +18,6 @@ class CartController {
             
         }
 
-        //let newAddMerch = Merch(merchname: body.merchname, price: body.price)
         print(body)
         merchInCartArray[body.merchname] = body.price
 
