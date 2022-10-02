@@ -50,7 +50,7 @@ func routes(_ app: Application) throws {
     
     //MARK: СПИСАНИЕ СРЕДСТВ - ОБНУЛЕНИЕ КОРЗИНЫ
     // при запросе на url "paybasket" будет использован класс CartController - метод payBasket
-    app.post("paybasket", use: controllerCart.payBasket)
+    app.get("paybasket", use: controllerCart.payBasket)
     
     //MARK: ИЗМЕНЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ
     let controllerEditPersonalData = EditPersonalDataController()

@@ -8,7 +8,7 @@
 import Vapor
 
 class CartController {
-    
+    let stok = Stock()
     var merchInCartArray = [String: Int]()
     var message = ""
     
@@ -19,7 +19,7 @@ class CartController {
         }
 
         print(body)
-        merchInCartArray[body.merchname] = body.price
+        merchInCartArray[body.merchname] = stok.merchAndPriceInStock[body.merchname]
 
         message = "Товар \(body.merchname) добавлен в корзину"
         let response = AddToCartResponse(
@@ -57,27 +57,23 @@ class CartController {
     
     // списание средств за покупку
     func payBasket(_ req: Request) throws -> EventLoopFuture<PayBasketResponse> {
-        guard let body = try? req.content.decode(PayBasketRequest.self) else {
-            throw Abort(.badRequest)
-        }
-
-//        print(body)
+        
         var summ = 0
         if !merchInCartArray.isEmpty {
             merchInCartArray.forEach { merch in
                 summ += merch.value
             }
-            message = "Вы хотите приобрести товаров на сумму \(summ) евров?"
+            message = "Вы приобрели товаров на сумму \(summ) уже никому не нужных евров"
             print(summ)
             // обнуление корзины
             merchInCartArray.removeAll()
+            print(merchInCartArray)
         } else {
             message = "Корзина пустая"
         }
         
 
         let response = PayBasketResponse(
-            result: 1,
             cart_message: message,
             error_message: nil
         )

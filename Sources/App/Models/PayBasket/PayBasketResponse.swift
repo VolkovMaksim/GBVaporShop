@@ -8,7 +8,6 @@
 import Vapor
 
 struct PayBasketResponse: Content {
-    var result: Int
     var cart_message: String
     var error_message: String?
 }

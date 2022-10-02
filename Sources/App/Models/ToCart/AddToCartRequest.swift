@@ -9,5 +9,4 @@ import Vapor
 
 struct AddToCartRequest: Content {
     var merchname: String
-    var price: Int
 }
